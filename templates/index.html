@@ -84,8 +84,13 @@
                 <span class="object-name">{{ item["class"] }}</span>
                 <div class="divider"></div>
                 <span class="confidence">Confidence: {{ item["confidence"] }}%</span><br>
-                <span class="date">Date: {{ item["timestamp"].split(" ")[0] }}</span><br>
-                <span class="time">Time: {{ item["timestamp"].split(" ")[1] }}</span>
+                {% if "timestamp" in item and item["timestamp"] %}
+                    <span class="date">Date: {{ item["timestamp"].split(" ")[0] }}</span><br>
+                    <span class="time">Time: {{ item["timestamp"].split(" ")[1] }}</span>
+                {% else %}
+                    <span class="date">Date: </span><br>
+                    <span class="time">Time: </span>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>

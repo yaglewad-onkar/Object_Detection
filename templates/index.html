@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="4">
+    <title>Object Detection Log</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #ddd;
+        }
+
+        h1 {
+            text-align: center;
+            color: #66a3ff;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        li:nth-child(odd) {
+            background-color: #3399ff; /* Color for person class */
+        }
+
+        li:nth-child(even) {
+            background-color: #3da83d; /* Color for cat class */
+        }
+
+        li {
+            border: 1px solid #333;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        li:hover {
+            transform: scale(1.05);
+        }
+
+        .object-name {
+            font-family: 'Arial', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #000; /* Pure black */
+            margin-bottom: 10px;
+        }
+
+        .confidence,
+        .date,
+        .time {
+            color: #fff; /* Pure white */
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: #000; /* Pure black */
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Object Detection Log</h1>
+    <ul>
+        {% for item in data %}
+            <li>
+                <span class="object-name">{{ item["class"] }}</span>
+                <div class="divider"></div>
+                <span class="confidence">Confidence: {{ item["confidence"] }}%</span><br>
+                <span class="date">Date: {{ item["timestamp"].split(" ")[0] }}</span><br>
+                <span class="time">Time: {{ item["timestamp"].split(" ")[1] }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
